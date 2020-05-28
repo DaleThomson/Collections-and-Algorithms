@@ -1,3 +1,4 @@
+#include <iostream>
 class BinarySearchTree
 {
 private:
@@ -9,7 +10,9 @@ private:
 	Tree* root; // Root Node
 
 public:
-	BinarySearchTree(){}; // Constructor
+	BinarySearchTree(){
+		root = NULL; // Initialize root as NULL
+	}; // Constructor
 
 	void insert(); // Used to insert a value into the tree.
 	void search(); // Used to search pre-existing values within the tree.
