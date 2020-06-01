@@ -10,7 +10,8 @@ int main()
 	while (run)
 	{
 		std::cout << "Please select a valid option: \n\n";
-		std::cout << "1. Register User";
+		std::cout << "1. Register User\n";
+		std::cout << "2. Login";
 		std::cout << "\n\nYour selection: ";
 		std::cin >> input;
 		switch (input)
@@ -26,7 +27,17 @@ int main()
 			system("Pause");
 			system("CLS");
 			break;
+		case 2:
+			std::cout << "Please enter your desired username: \n";
+			std::cin >> userName;
+			std::cout << "\nPlease enter your desired password: \n";
+			std::cin >> password;
+			user->login(userName, password);
+			break;
 		default:
+			system("CLS");
+			std::cout << "Please select a valid option \n\n";
+			system("Pause");
 			system("CLS");
 			break;
 		}
