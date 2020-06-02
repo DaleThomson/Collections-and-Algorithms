@@ -12,19 +12,24 @@ void User::registerUser(std::string userName, std::string password)
 void User::login(std::string inUserName, std::string inPassword)
 {
 	authenticate.open("userList.txt");
-	std::getline(authenticate, userName, ' ');
-	std::getline(authenticate, password);
-	if (userName == inUserName && password == inPassword)
-	{
-		std::cout << "\n\nUser found\n\n";
-		system("PAUSE");
-		system("CLS");
-	}
-	else
-	{
-		std::cout << "\n\nLogin failed\n\n";
-		system("PAUSE");
-		system("CLS");
-	}
 
+	if (authenticate)
+	{
+		while (std::getline(authenticate, userName, ' ') && (std::getline(authenticate, password)))
+		{
+			if (userName == inUserName && password == inPassword)
+			{
+				std::cout << "\n\nUser found\n\n";
+				system("PAUSE");
+				system("CLS");
+				break;
+			}
+		}
+		if (userName != inUserName || password != inPassword)
+		{
+			std::cout << "\nLogin failed\n\n";
+			system("PAUSE");
+			system("CLS");
+		}
+	}
 }
