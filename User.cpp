@@ -1,6 +1,6 @@
 #include "User.h" 
 
-void User::registerUser(std::string userName, std::string password)
+ User::User(std::string userName, std::string password)
 {
 	userList.open("userList.txt", std::fstream::out | std::fstream::app);
 	userList << userName << " ";
@@ -15,9 +15,9 @@ void User::login(std::string inUserName, std::string inPassword)
 
 	if (authenticate)
 	{
-		while (std::getline(authenticate, userName, ' ') && (std::getline(authenticate, password)))
+		while (std::getline(authenticate, username, ' ') && (std::getline(authenticate, password)))
 		{
-			if (userName == inUserName && password == inPassword)
+			if (username == inUserName && password == inPassword)
 			{
 				std::cout << "\n\nUser found\n\n";
 				system("PAUSE");
@@ -25,7 +25,7 @@ void User::login(std::string inUserName, std::string inPassword)
 				break;
 			}
 		}
-		if (userName != inUserName || password != inPassword)
+		if (username != inUserName || password != inPassword)
 		{
 			std::cout << "\nLogin failed\n\n";
 			system("PAUSE");

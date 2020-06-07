@@ -4,12 +4,11 @@
 #include "Employee.h"
 int main()
 {
-	User* user = new User;
+	User* user;
 	Employee* employee = new Employee;
 	std::string userName, password;
 	int input;
 	bool run = true;
-	
 	while (run)
 	{
 		std::cout << "Please select a valid option: \n\n";
@@ -36,7 +35,7 @@ int main()
 				std::cout << "\nPlease enter your desired password";
 				std::cout << "\n\nEnter here: ";
 				std::cin >> password;
-				user->registerUser(userName, password);
+				user = new User(userName, password);
 				break;
 			case 2:
 				std::cout << "Please enter your desired username";
@@ -65,7 +64,7 @@ int main()
 				std::cout << "\nPlease enter your password";
 				std::cout << "\n\nEnter here: ";
 				std::cin >> password;
-				user->login(userName, password);
+				//user->login(userName, password);
 				break;
 			case 2:
 				std::cout << "Welcome Employee";
