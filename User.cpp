@@ -37,9 +37,3 @@ void User::login(std::string inUserName, std::string inPassword)
 		}
 	}
 }
-
-void User::wee()
-{
-	std::cout << username << std::endl;
-	std::cout << password << std::endl;
-}

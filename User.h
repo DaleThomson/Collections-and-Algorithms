@@ -15,5 +15,4 @@ public:
 	User() {}
 	void registerUser(std::string username, std::string password);
 	void login(std::string username, std::string password);
-	void wee();
 };
