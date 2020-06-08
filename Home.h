@@ -1,12 +1,12 @@
 #pragma once
 #include "AbstractPage.h"
 #include "User.h"
-#include "Employee.h"
 class Home : public AbstractPage
 {
+private:
+	User* user;
+public:
 	Home(User* user) {}
-
-	Home(Employee* employee) {}
 
 	virtual ~Home() {}
 

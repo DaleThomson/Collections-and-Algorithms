@@ -1,7 +1,18 @@
 #include "Home.h"
 
-void print()
+void Home::print()
 {
-	std::cout << "Welcome to the home page.\n\n";
+	system("CLS");
+	std::cout << "Welcome to the Homepage: \n\n";
 	system("PAUSE");
+}
+
+void Home::input(int input, AbstractPage** page)
+{
+	switch (input)
+	{
+	case 1:
+		break;
+	default:break;
+	}
 }

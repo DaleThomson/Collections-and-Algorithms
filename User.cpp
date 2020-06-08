@@ -1,9 +1,9 @@
 #include "User.h" 
 
- User::User(std::string userName, std::string password)
+void User::registerUser(std::string username, std::string password)
 {
 	userList.open("userList.txt", std::fstream::out | std::fstream::app);
-	userList << userName << " ";
+	userList << username << " ";
 	userList << password;
 	userList << "\n";
 	userList.close();

@@ -1,10 +1,10 @@
 #include "Employee.h"
 
 
-void Employee::registerEmployee(std::string userName, std::string password)
+void Employee::registerEmployee(std::string username, std::string password)
 {
 	employeeList.open("employeeList.txt", std::fstream::out | std::fstream::app);
-	employeeList << userName << " ";
+	employeeList << username << " ";
 	employeeList << password;
 	employeeList << "\n";
 	employeeList.close();
@@ -16,9 +16,9 @@ void Employee::login(std::string inUserName, std::string inPassword)
 
 	if (authenticate)
 	{
-		while (std::getline(authenticate, userName, ' ') && (std::getline(authenticate, password)))
+		while (std::getline(authenticate, username, ' ') && (std::getline(authenticate, password)))
 		{
-			if (userName == inUserName && password == inPassword)
+			if (username == inUserName && password == inPassword)
 			{
 				std::cout << "\n\Employee found\n\n";
 				system("PAUSE");
@@ -26,7 +26,7 @@ void Employee::login(std::string inUserName, std::string inPassword)
 				break;
 			}
 		}
-		if (userName != inUserName || password != inPassword)
+		if (username != inUserName || password != inPassword)
 		{
 			std::cout << "\nLogin failed\n\n";
 			system("PAUSE");

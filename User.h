@@ -1,5 +1,3 @@
-#ifndef USER_H
-#define USER_H
 #pragma once
 #include <iostream>
 #include <string>
@@ -14,8 +12,7 @@ private:
 	std::ofstream userList;
 	std::fstream authenticate;
 public:
-	User(std::string username, std::string password);
+	User() {}
+	void registerUser(std::string username, std::string password);
 	void login(std::string username, std::string password);
 };
-
-#endif

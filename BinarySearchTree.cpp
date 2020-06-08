@@ -2,7 +2,6 @@
 
 void BinarySearchTree::insert()
 {
-
 	Tree* node = new Tree;
 	Tree* parent;
 	node->left = NULL;
