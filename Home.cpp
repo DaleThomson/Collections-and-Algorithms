@@ -4,6 +4,7 @@ void Home::print()
 {
 	system("CLS");
 	std::cout << "Welcome to the Homepage: \n\n";
+	user->wee();
 	system("PAUSE");
 }
 

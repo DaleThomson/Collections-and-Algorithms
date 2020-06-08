@@ -6,7 +6,7 @@ class Home : public AbstractPage
 private:
 	User* user;
 public:
-	Home(User* user) {}
+	Home(User* user) :user(user) {}
 
 	virtual ~Home() {}
 

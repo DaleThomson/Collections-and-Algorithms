@@ -46,5 +46,4 @@ void Login::input(int input, AbstractPage** page)
 		system("CLS");
 		break;
 	}
-	delete p;
 }

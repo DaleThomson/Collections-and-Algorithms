@@ -1,12 +1,14 @@
 #include "User.h" 
 
-void User::registerUser(std::string username, std::string password)
+void User::registerUser(std::string inUserName, std::string inPassword)
 {
 	userList.open("userList.txt", std::fstream::out | std::fstream::app);
-	userList << username << " ";
-	userList << password;
+	userList << inUserName << " ";
+	userList << inPassword;
 	userList << "\n";
 	userList.close();
+	username = inUserName;
+	password = inPassword;
 }
 
 void User::login(std::string inUserName, std::string inPassword)
@@ -22,6 +24,8 @@ void User::login(std::string inUserName, std::string inPassword)
 				std::cout << "\n\nUser found\n\n";
 				system("PAUSE");
 				system("CLS");
+				username = inUserName;
+				password = inPassword;
 				break;
 			}
 		}
@@ -32,4 +36,10 @@ void User::login(std::string inUserName, std::string inPassword)
 			system("CLS");
 		}
 	}
+}
+
+void User::wee()
+{
+	std::cout << username << std::endl;
+	std::cout << password << std::endl;
 }
