@@ -38,6 +38,7 @@ void Login::input(int input, AbstractPage** page)
 		std::cin >> password;
 		employee = new Employee();
 		employee->login(username, password);
+		*page = new EmployeeDash(employee);
 		break;
 	default:
 		system("CLS");

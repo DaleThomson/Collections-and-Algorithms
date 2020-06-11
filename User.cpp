@@ -28,12 +28,20 @@ void User::login(std::string inUserName, std::string inPassword)
 				password = inPassword;
 				break;
 			}
-		}
-		if (username != inUserName || password != inPassword)
-		{
-			std::cout << "\nLogin failed\n\n";
-			system("PAUSE");
-			system("CLS");
+			else
+			{
+				std::cout << "\nLogin failed\n\n";
+				system("PAUSE");
+				system("CLS");
+				std::cout << "Please re-enter your details.";
+				std::cout << "\n\nPlease enter your username: ";
+				std::cin >> inUserName;
+				std::cout << "\nPlease enter your password: ";
+				std::cin >> inPassword;
+				authenticate.close();
+				login(inUserName, inPassword);
+				break;
+			}
 		}
 	}
 }
