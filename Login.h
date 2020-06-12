@@ -16,7 +16,5 @@ public:
 private:
 	User* user;
 	Employee* employee;
-	Home* home;
-	EmployeeDash* employeeDash;
 	std::string username, password;
 };

@@ -1,6 +1,8 @@
 #pragma once
 #include "AbstractPage.h"
 #include "User.h"
+#include "Access.h"
+#include "RoomTree.h"
 class Home : public AbstractPage
 {
 private:

@@ -1,6 +1,7 @@
 #pragma once
 #include "AbstractPage.h"
-
+#include "User.h"
+#include "Employee.h"
 class RoomTree : public AbstractPage
 {
 private:
@@ -15,8 +16,15 @@ private:
 	};
 	tree* root;
 
+	User* user;
+	Employee* employee;
 public:
-	RoomTree()
+	RoomTree(User* user) : user(user)
+	{
+		root = NULL;
+	}
+
+	RoomTree(Employee* employee) : employee(employee)
 	{
 		root = NULL;
 	}
