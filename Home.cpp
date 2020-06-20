@@ -16,7 +16,7 @@ void Home::input(int input, AbstractPage** page)
 	{
 	case 1:
 		system("CLS");
-		*page = new RoomTree(user);
+		*page = new BinarySearchTree(user);
 		break;
 	case 2:
 		system("CLS");
