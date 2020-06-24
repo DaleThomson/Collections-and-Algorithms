@@ -7,68 +7,20 @@ class Room
 	int price, occupancyLimit, rating; // Declarations of all needed intergers.
 
 public:
-	Room(std::string roomNum, std::string suite, std::string vacancy,
-		int price, int occupancyLimit, int rating) : suite(suite), vacancy(vacancy),
-		price(price), occupancyLimit(occupancyLimit), rating(rating) {} // Constructor
+	Room();
+	Room(std::string Num, std::string suiteType, std::string vacancyStatus,
+		int cost, int max_occupancy, int reviewScore); // Constructor
 
-	std::string getRoomNum()
-	{
-		return roomNum;
-	}
-
-	std::string getSuite()
-	{
-		return suite;
-	}
-
-	std::string getVacancy()
-	{
-		return vacancy;
-	}
-
-	int getPrice()
-	{
-		return price;
-	}
-
-	int getOccupancyLimit()
-	{
-		return occupancyLimit;
-	}
-
-	int getRating()
-	{
-		return rating;
-	}
-
-	void setRoomNum(std::string newRoomNum)
-	{
-		roomNum = newRoomNum;
-	}
-
-	void setSuite(std::string newSuite)
-	{
-		suite = newSuite;
-	}
-
-	void setVacancy(std::string newVacancy)
-	{
-		vacancy = newVacancy;
-	}
-
-	void setPrice(int newPrice)
-	{
-		price = newPrice;
-	}
-
-	void setOccupancyLimit(int newOccupancyLimit)
-	{
-		occupancyLimit = newOccupancyLimit;
-	}
-
-	void setRating(int newRating)
-	{
-		rating = newRating;
-	}
-
+	std::string getRoomNum();
+	std::string getSuite();
+	std::string getVacancy();
+	int getPrice();
+	int getOccupancyLimit();
+	int getRating();
+	void setRoomNum(std::string newRoomNum);
+	void setSuite(std::string newSuite);
+	void setVacancy(std::string newVacancy);
+	void setPrice(int newPrice);
+	void setOccupancyLimit(int newOccupancyLimit);
+	void setRating(int newRating);
 };

@@ -26,6 +26,7 @@ void Login::input(int input, AbstractPage** page)
 		user = new User();
 		user->login(username, password);
 		*page = new Home(user);
+		delete p;
 		break;
 	case 2:
 		system("CLS");
@@ -39,6 +40,7 @@ void Login::input(int input, AbstractPage** page)
 		employee = new Employee();
 		employee->login(username, password);
 		*page = new EmployeeDash(employee);
+		delete p;
 		break;
 	default:
 		system("CLS");
@@ -47,5 +49,4 @@ void Login::input(int input, AbstractPage** page)
 		system("CLS");
 		break;
 	}
-	delete p;
 }

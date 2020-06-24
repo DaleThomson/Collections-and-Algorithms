@@ -14,13 +14,15 @@ void Home::input(int input, AbstractPage** page)
 	AbstractPage* p = *page;
 	switch (input)
 	{
-	case 1:
-		system("CLS");
-		*page = new BinarySearchTree(user);
-		break;
+	//case 1:
+	//	system("CLS");
+	//	*page = new BinarySearchTree(user);
+	//	delete p;
+	//	break;
 	case 2:
 		system("CLS");
 		*page = new Access();
+		delete p;
 		break;
 	default:
 		system("CLS");
@@ -29,5 +31,4 @@ void Home::input(int input, AbstractPage** page)
 		system("CLS");
 		break;
 	}
-	delete p;
 }

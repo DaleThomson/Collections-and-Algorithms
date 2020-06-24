@@ -1,7 +1,7 @@
 #pragma once
 #include "AbstractPage.h"
 #include "Employee.h"
-
+#include "MainPage.h"
 class EmployeeDash : public AbstractPage
 {
 private:

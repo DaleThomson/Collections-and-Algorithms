@@ -1,26 +1,16 @@
 #include "BinarySearchTree.h"
 
-void BinarySearchTree::print()
-{
-	std::cout << "Welcome to our vast selection of rooms.";
-	std::cout << "\n\nHere at Hotel Co we hope you find the room that is right for you";
-	std::cout << "\n\n1. View all rooms";
-	std::cout << "\n2. Search for a specific room.";
-	std::cout << "\n3. Deposit currency.";
-	std::cout << "\n\nPlease make your selection: ";
-}
-
-void BinarySearchTree::addRoom(Room* room)
+void BinarySearchTree::addRoom(Room room)
 {
 	tree* node = new tree;
 	tree* parent;
 	node->room = room;
+	node->left = NULL;
+	node->right = NULL;
 	parent = NULL;
 
 	if (root == NULL)
-	{
 		root = node;
-	}
 	else
 	{
 		tree* currentNode;
@@ -29,38 +19,72 @@ void BinarySearchTree::addRoom(Room* room)
 		while (currentNode)
 		{
 			parent = currentNode;
-
-			if (node->roomTree->roomNum > currentNode->roomTree->roomNum)
-			{
-				currentNode = currentNode->right;
-			}
-			else
-			{
+			if (node->room.getRoomNum() > currentNode->room.getRoomNum()) 
+				currentNode = currentNode->right;							
+			else							
 				currentNode = currentNode->left;
-			}
 		}
-
-		if (node->roomTree->roomNum < parent->roomTree->roomNum)
-		{
+		if (node->room.getRoomNum() < parent->room.getRoomNum())
 			parent->left = node;
-		}
 		else
-		{
 			parent->right = node;
-		}
-
 	}
 }
 
-void BinarySearchTree::createRoom()
+void BinarySearchTree::populateTree(BinarySearchTree* tree)
 {
+	std::ifstream file;
+	std::string roomNum, suite, vacancy;
+	int cost, max_occupancy, rating;
+	Room room;
+
+	file.open("roomList.txt");
+	if (!file)
+	{
+		std::cout << "Can't find file" << std::endl;
+	}
+
+	while (file >> roomNum >> suite >> vacancy >> cost >> max_occupancy >> rating)
+	{
+		room.setRoomNum(roomNum);
+		room.setSuite(suite);
+		room.setVacancy(vacancy);
+		room.setPrice(cost);
+		room.setOccupancyLimit(max_occupancy);
+		room.setRating(rating);
+		(*tree).addRoom(room);
+	}
+	file.close();
+}
+
+void BinarySearchTree::createRoom(Employee* employee)
+{
+	std::string roomNum, suite, vacancy;
+	int cost = 0, max_occupancy = 0, rating = 0;
 	system("CLS");
 	std::cout << "Please enter the room number for the new listing: ";
 	std::cin >> roomNum;
 	std::cout << "\nPlease enter the suite type for the new listing: ";
 	std::cin >> suite;
-	std::cout << "\nPlease enter the vacancy status of the new listing: ";
-	std::cin >> vacancy;
+	std::cout << "\nIs the room vacant Y/N? ";
+	char confirm;
+	std::cin >> confirm;
+	while (1)
+	{
+		switch (confirm)
+		{
+		case 'Y': case 'y':
+			vacancy = "Vacant";
+			break;
+		case 'N': case 'n':
+			vacancy = "Occupied";
+			break;
+		default:
+			std::cout << "Please select a valid option";
+			break;
+		}
+		break;
+	}
 	std::cout << "\nPlease enter the cost of the new listing: £";
 	std::cin >> cost;
 	std::cout << "\nPlease enter the maximum occupancy of the new listing: ";
@@ -79,19 +103,24 @@ void BinarySearchTree::createRoom()
 	std::cout << "\nVacancy: " << vacancy;
 	std::cout << "\nCost: £" << cost;
 	std::cout << "\nMaximum Occupancy: " << max_occupancy;
-	std::cout << "\nRating: " << rating << "/5";
+	std::cout << "\nRating: " << rating;
 	std::cout << "\n\nAre these details correct? ";
-	char confirm;
 	std::cin >> confirm;
 	switch (confirm)
 	{
 	case 'Y': case 'y':
-		Room* room = new Room(roomNum, suite, vacancy,
-			cost, max_occupancy, rating);
+	{
+		Room room;
+
+		outRoomList.open("roomList.txt", std::fstream::out | std::fstream::app);
+		outRoomList << roomNum << " " << suite << " " << vacancy << " " << cost << " "
+			<< max_occupancy << " " << rating << std::endl;
 		addRoom(room);
+		outRoomList.close();
 		break;
+	}
 	case 'N': case 'n':
-		createRoom();
+		createRoom(employee);
 		break;
 	default:
 		std::cout << "Please select a valid option.\n\n";
@@ -115,20 +144,20 @@ void BinarySearchTree::searchRoom(std::string roomNum)
 
 	while (currentNode != NULL)
 	{
-		if (currentNode->room->getRoomNum() == roomNum)
+		if (currentNode->room.getRoomNum() == roomNum)
 		{
-			std::cout << "Room Number: " << currentNode->room->getRoomNum();
-			std::cout << "\nSuite: " << currentNode->room->getSuite();
-			std::cout << "\nVacancy: " << currentNode->room->getVacancy();
-			std::cout << "\nCost: £" << currentNode->room->getPrice();
-			std::cout << "\nMaximum Occupancy: " << currentNode->room->getOccupancyLimit();
-			std::cout << "\nRating: " << currentNode->room->getRating();
+			std::cout << "Room Number: " << currentNode->room.getRoomNum();
+			std::cout << "\nSuite: " << currentNode->room.getSuite();
+			std::cout << "\nVacancy: " << currentNode->room.getVacancy();
+			std::cout << "\nCost: £" << currentNode->room.getPrice();
+			std::cout << "\nMaximum Occupancy: " << currentNode->room.getOccupancyLimit();
+			std::cout << "\nRating: " << currentNode->room.getRating();
 			break;
 		}
 		else
 		{
 			parent = currentNode;
-			if (roomNum > currentNode->room->getRoomNum())
+			if (roomNum > currentNode->room.getRoomNum())
 			{
 				currentNode = currentNode->right;
 			}
@@ -138,20 +167,34 @@ void BinarySearchTree::searchRoom(std::string roomNum)
 			}
 		}
 	}
-
 }
 
-void BinarySearchTree::input(int input, AbstractPage** page)
+void BinarySearchTree::printTree(tree* roomTree)
 {
-	switch (input)
+	if (roomTree != NULL)
 	{
-	case 1:
-		break;
-	case 2:
-		break;
-	case 3:
-		break;
-	default:
-		break;
+		std::cout << roomTree->room.getRoomNum() << "        ";
+		std::cout << roomTree->room.getSuite() << "        ";
+		std::cout << roomTree->room.getVacancy() << "        ";
+		std::cout << roomTree->room.getPrice() << "        ";
+		std::cout << roomTree->room.getOccupancyLimit() << "        ";
+		std::cout << roomTree->room.getRating() << "/5" << std::endl;
+		if (roomTree->left)
+		{
+			printTree(roomTree->left);
+		}
+		if (roomTree->right)
+		{
+			printTree(roomTree->right);
+		}
 	}
+	else
+	{
+		std::cout << "Tree is empty";
+	}
+}
+
+void BinarySearchTree::display()
+{
+	printTree(root);
 }

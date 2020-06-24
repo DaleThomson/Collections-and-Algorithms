@@ -25,6 +25,7 @@ void Register::input(int input, AbstractPage** page)
 		user = new User();
 		user->registerUser(username, password);
 		*page = new Home(user);
+		delete p;
 		break;
 	case 2:
 		system("CLS");
@@ -35,6 +36,7 @@ void Register::input(int input, AbstractPage** page)
 		std::cin >> password;
 		employee = new Employee();
 		employee->registerEmployee(username, password);
+		delete p;
 		break;
 	default:
 		system("CLS");
@@ -43,5 +45,4 @@ void Register::input(int input, AbstractPage** page)
 		system("CLS");
 		break;
 	}
-	delete p;
 }

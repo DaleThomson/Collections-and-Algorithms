@@ -1,46 +1,30 @@
 #pragma once
-#include "AbstractPage.h"
 #include "User.h"
 #include "Employee.h"
 #include "Room.h"
-class BinarySearchTree : public AbstractPage
+class BinarySearchTree
 {
 private:
-	std::string roomNum, suite, vacancy;
-	int cost, max_occupancy, rating;
-	
-	std::ofstream roomList;
-	std::fstream authenticate;
-
 	struct tree
 	{
 		tree* left;
 		tree* right;
-		BinarySearchTree* roomTree;
-		Room* room;
+		Room room;
 	};
 	tree* root;
+	std::ofstream outRoomList;
 
 	User* user;
 	Employee* employee;
-
 public:
-	BinarySearchTree(User* user) : user(user)
-	{
+	BinarySearchTree() {
 		root = NULL;
 	}
 
-	BinarySearchTree(Employee* employee) : employee(employee)
-	{
-		root = NULL;
-	}
-
-	void print();
-	void input(int input, AbstractPage** page);
-	void addRoom(Room* room);
-	void createRoom();
+	void addRoom(Room room);
+	void createRoom(Employee* employee);
 	void searchRoom(std::string room);
-	void removeRoom(std::string room);
-	void printTree(tree* tree);
+	void printTree(tree*);
+	void display();
 	void populateTree(BinarySearchTree* tree);
 };

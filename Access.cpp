@@ -17,10 +17,12 @@ void Access::input(int input, AbstractPage** page)
 	case 1:
 		system("CLS");
 		*page = new Register();
+		delete p;
 		break;
 	case 2:
 		system("CLS");
 		*page = new Login();
+		delete p;
 		break;
 	default:
 		system("CLS");
@@ -29,5 +31,4 @@ void Access::input(int input, AbstractPage** page)
 		system("CLS");
 		break;
 	}
-	delete p;
 }
