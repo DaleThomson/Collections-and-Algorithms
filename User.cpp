@@ -12,6 +12,35 @@ void User::registerAccount(std::string inUserName, std::string inPassword)
 	password = inPassword;
 }
 
+void User::GDPR()
+{
+	char confirm;
+	int check = 0;
+	std::cout << "Please read and agree to our GDPR: https://www.gdprprivacynotice.com/live.php?token=wsrxYx4EICu2yJxHgADyC3mvTHaiOiyp";
+	std::cout << "Please enter your decision: Y/N: ";
+	std::cin >> confirm;
+	while (check != 1)
+	{
+		switch (confirm)
+		{
+		case 'Y': case 'y':
+			check = 1;
+			break;
+		case 'N': case 'n':
+			system("CLS");
+			std::cout << "Unfortunately agreeing to the GDPR is mandatory\n\n";
+			system("PAUSE");
+			exit (EXIT_FAILURE);
+			break;
+		default:
+			system("CLS");
+			std::cout << "Please select a valid option \n\n";
+			system("Pause");
+			system("CLS");
+		}
+	}
+}
+
 //Allows the user to login to a pre-existing user account by checking the details against the txt tile.
 void User::login(std::string inUserName, std::string inPassword)
 {
