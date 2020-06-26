@@ -28,4 +28,6 @@ public:
 	void display(); // A method used to rum the printTree method.
 	void populateTree(BinarySearchTree* tree); // Parses the text files and sets the data for each node to be passed to the add room method.
 	void nullRoot(); // A method used to nullify the root so the tree can be updated when the file is loaded.
+	void populateReverseTree(BinarySearchTree* tree); // Parses the text files and sets the data for each node to be passed to the add room method.
+	void addReverseRoom(Room room); // A method for adding nodes to the BST in reverse order
 };

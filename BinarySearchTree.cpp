@@ -39,6 +39,38 @@ void BinarySearchTree::addRoom(Room room)
 	}
 }
 
+//This is used to add individual rooms to the nodes within the BST in reverse order
+void BinarySearchTree::addReverseRoom(Room room)
+{
+	tree* node = new tree;
+	tree* parent;
+	node->room = room;
+	node->left = NULL;
+	node->right = NULL;
+	parent = NULL;
+
+	if (root == NULL)
+		root = node;
+	else
+	{
+		tree* currentNode;
+		currentNode = root;
+
+		while (currentNode)
+		{
+			parent = currentNode;
+			if (node->room.getRoomNum() < currentNode->room.getRoomNum())
+				currentNode = currentNode->right;
+			else
+				currentNode = currentNode->left;
+		}
+		if (node->room.getRoomNum() > parent->room.getRoomNum())
+			parent->left = node;
+		else
+			parent->right = node;
+	}
+}
+
 // This method is used to read the data from a text file and parse it into the nodes
 void BinarySearchTree::populateTree(BinarySearchTree* tree)
 {
@@ -65,6 +97,36 @@ void BinarySearchTree::populateTree(BinarySearchTree* tree)
 		room.setOccupancyLimit(max_occupancy);
 		room.setRating(rating);
 		(*tree).addRoom(room);
+	}
+	file.close();
+}
+
+// This method is used to read the data from a text file and parse it into the nodes
+void BinarySearchTree::populateReverseTree(BinarySearchTree* tree)
+{
+	std::ifstream file;
+	std::string roomNum, suite, vacancy;
+	int cost, max_occupancy, rating;
+	Room room;
+
+	file.open("roomList.txt");
+	if (!file)
+	{
+		system("CLS");
+		std::cout << "Can't find file" << std::endl;
+		system("PAUSE");
+		system("CLS");
+	}
+
+	while (file >> roomNum >> suite >> vacancy >> cost >> max_occupancy >> rating)
+	{
+		room.setRoomNum(roomNum);
+		room.setSuite(suite);
+		room.setVacancy(vacancy);
+		room.setPrice(cost);
+		room.setOccupancyLimit(max_occupancy);
+		room.setRating(rating);
+		(*tree).addReverseRoom(room);
 	}
 	file.close();
 }
@@ -96,6 +158,7 @@ void BinarySearchTree::createRoom(Employee* employee)
 			check = 1;
 			break;
 		default:
+			system("CLS");
 			std::cout << "Please select a valid option\n\n";
 			std::cout << "Please enter your selection: Y/N: ";
 			std::cin >> confirm;

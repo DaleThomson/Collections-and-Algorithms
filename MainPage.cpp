@@ -6,12 +6,13 @@ void mainPage::print()
 	std::cout << "Welcome to our vast selection of rooms.";
 	std::cout << "\n\nHere at Hotel Co we hope you find the room that is right for you";
 	std::cout << "\n\n1. Load room selection";
-	std::cout << "\n2. View all rooms.";
-	std::cout << "\n3. Search for a specific room.";
-	std::cout << "\n4. Create a new room. (Employee account required)";
-	std::cout << "\n5. Check Booking";
-	std::cout << "\n6. Previous page";
-	std::cout << "\n7. Log out";
+	std::cout << "\n2. Load room selection in reverse order";
+	std::cout << "\n3. View all rooms.";
+	std::cout << "\n4. Search for a specific room.";
+	std::cout << "\n5. Create a new room. (Employee account required)";
+	std::cout << "\n6. Check Booking";
+	std::cout << "\n7. Previous page";
+	std::cout << "\n8. Log out";
 	std::cout << "\n\nPlease make your selection: ";
 }
 
@@ -20,8 +21,8 @@ void mainPage::input(int input, AbstractPage** page)
 {
 	AbstractPage* p = *page;
 	switch (input)
-	case 1:
 	{
+	case 1:
 		//Nullifys the root and populates the BST.
 		bst.nullRoot();
 		tree->populateTree(&bst);
@@ -31,6 +32,14 @@ void mainPage::input(int input, AbstractPage** page)
 		system("CLS");
 		break;
 	case 2:
+		bst.nullRoot();
+		tree->populateReverseTree(&bst);
+		system("CLS");
+		std::cout << "Load successful\n\n";
+		system("PAUSE");
+		system("CLS");
+		break;
+	case 3:
 		//Prints the BST
 		system("CLS");
 		std::cout << "Room Num" << "    " << "Suite" << "         " << "Vacancy" << "       " << "Cost \x9C"
@@ -39,7 +48,7 @@ void mainPage::input(int input, AbstractPage** page)
 		system("PAUSE");
 		system("CLS");
 		break;
-	case 3:
+	case 4:
 		if (user == NULL)
 		{
 			system("CLS");
@@ -55,7 +64,7 @@ void mainPage::input(int input, AbstractPage** page)
 		std::cin >> searchParams;
 		bst.searchRoom(searchParams);
 		break;
-	case 4:
+	case 5:
 		if (employee == NULL)
 		{
 			system("CLS");
@@ -70,7 +79,7 @@ void mainPage::input(int input, AbstractPage** page)
 			bst.createRoom(employee);
 			break;
 		}
-	case 5:
+	case 6:
 		if (user == NULL)
 		{
 			system("CLS");
@@ -86,7 +95,7 @@ void mainPage::input(int input, AbstractPage** page)
 			system("CLS");
 			break;
 		}
-	case 6:
+	case 7:
 		// Allows the user to go back a page.
 		system("CLS");
 		if (user != NULL)
@@ -101,7 +110,7 @@ void mainPage::input(int input, AbstractPage** page)
 			delete p;
 			break;
 		}
-	case 7:
+	case 8:
 		// Allows the user to log out.
 		system("CLS");
 		if(user != NULL)

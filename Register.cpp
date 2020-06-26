@@ -25,6 +25,7 @@ void Register::input(int input, AbstractPage** page)
 		std::cout << "\n\nEnter here: ";
 		std::cin >> password;
 		user = new User();
+		user->GDPR();
 		user->registerAccount(username, password);
 		*page = new Home(user);
 		delete p;
@@ -35,6 +36,7 @@ void Register::input(int input, AbstractPage** page)
 		std::cout << "\n\nEnter here: ";
 		std::cin >> username;
 		std::cout << "\nPlease enter your desired password";
+		std::cout << "\n\nEnter here: ";
 		std::cin >> password;
 		employee = new Employee();
 		employee->registerAccount(username, password);

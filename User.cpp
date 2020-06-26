@@ -3,13 +3,41 @@
 //Registers a new user account by storing the input data into a txt file.
 void User::registerAccount(std::string inUserName, std::string inPassword)
 {
-	userList.open("userList.txt", std::fstream::out | std::fstream::app);
-	userList << inUserName << " ";
-	userList << inPassword;
-	userList << "\n";
-	userList.close();
-	username = inUserName;
-	password = inPassword;
+	authenticate.open("userList.txt");
+	int verify = 0;
+	if (authenticate)
+	{
+		while (std::getline(authenticate, username, ' '))
+		{
+			if (username == inUserName)
+			{
+				system("CLS");
+				std::cout << "This username is already taken \n\n";
+				system("PAUSE");
+				system("CLS");
+				std::cout << "Please re-enter your details.";
+				std::cout << "\n\nPlease enter your username: ";
+				std::cin >> inUserName;
+				std::cout << "\nPlease enter your password: ";
+				std::cin >> inPassword;
+				authenticate.close();
+				registerAccount(inUserName, inPassword);
+				break;
+			}
+			else if (username != inUserName)
+			{
+				authenticate.close();
+				userList.open("userList.txt", std::fstream::out | std::fstream::app);
+				userList << inUserName << " ";
+				userList << inPassword;
+				userList << "\n";
+				userList.close();
+				username = inUserName;
+				password = inPassword;
+				break;
+			}
+		}
+	}
 }
 //Prompts the user to accept the GDPR agreement. Sourced from this website : https://www.gdprprivacynotice.com/
 void User::GDPR()
