@@ -1,5 +1,6 @@
 #include "Register.h"
 
+//Prints the contents of the webpage
 void Register::print()
 {
 	system("CLS");
@@ -9,6 +10,7 @@ void Register::print()
 	std::cout << "\n\nPlease enter your selection: ";
 }
 
+// Handles the users inputs on the site.
 void Register::input(int input, AbstractPage** page)
 {
 	AbstractPage* p = *page;
@@ -23,7 +25,7 @@ void Register::input(int input, AbstractPage** page)
 		std::cout << "\n\nEnter here: ";
 		std::cin >> password;
 		user = new User();
-		user->registerUser(username, password);
+		user->registerAccount(username, password);
 		*page = new Home(user);
 		delete p;
 		break;
@@ -35,7 +37,8 @@ void Register::input(int input, AbstractPage** page)
 		std::cout << "\nPlease enter your desired password";
 		std::cin >> password;
 		employee = new Employee();
-		employee->registerEmployee(username, password);
+		employee->registerAccount(username, password);
+		*page = new EmployeeDash(employee);
 		delete p;
 		break;
 	default:

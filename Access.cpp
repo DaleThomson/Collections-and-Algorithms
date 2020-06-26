@@ -14,11 +14,13 @@ void Access::input(int input, AbstractPage** page)
 	AbstractPage* p = *page;
 	switch (input)
 	{
+	//Takes the user to a registration page.
 	case 1:
 		system("CLS");
 		*page = new Register();
 		delete p;
 		break;
+	//Takes the user to a login page
 	case 2:
 		system("CLS");
 		*page = new Login();

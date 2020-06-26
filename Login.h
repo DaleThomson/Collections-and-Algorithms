@@ -7,14 +7,14 @@
 class Login : public AbstractPage
 {
 public:
-	Login() {}
+	Login() {} // Constructor
 
-	virtual ~Login() {}
+	virtual ~Login() {} // Deconstructor
 
-	void print();
-	void input(int input, AbstractPage** page);
+	void print(); // Prints the contents of this webpage.
+	void input(int input, AbstractPage** page); // Handles the inputs for this webpage.
 private:
-	User* user;
-	Employee* employee;
-	std::string username, password;
+	User* user; // Pointer to the user class.
+	Employee* employee; // Pointer to the employee class.
+	std::string username, password; // Strings for storing usernames and passwords.
 };

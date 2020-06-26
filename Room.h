@@ -7,10 +7,12 @@ class Room
 	int price, occupancyLimit, rating; // Declarations of all needed intergers.
 
 public:
-	Room();
+	Room(); // Constructor
 	Room(std::string Num, std::string suiteType, std::string vacancyStatus,
-		int cost, int max_occupancy, int reviewScore); // Constructor
+		int cost, int max_occupancy, int reviewScore); // Constructor with variables
 
+
+	//Getters and setters
 	std::string getRoomNum();
 	std::string getSuite();
 	std::string getVacancy();

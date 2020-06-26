@@ -6,12 +6,12 @@
 class Home : public AbstractPage
 {
 private:
-	User* user;
+	User* user; // Pointer to the user class
 public:
-	Home(User* user) :user(user) {}
+	Home(User* user) :user(user) {} // Constructor
 
-	virtual ~Home() {}
+	virtual ~Home() {} // Deconstructor
 
-	void print();
-	void input(int input, AbstractPage** page);
+	void print(); // Prints the contents of the web page
+	void input(int input, AbstractPage** page); // Handles the inputs for this webpage
 };

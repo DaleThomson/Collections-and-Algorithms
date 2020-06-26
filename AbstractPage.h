@@ -4,9 +4,8 @@
 class AbstractPage
 {
 public:
-	virtual ~AbstractPage(){
-	}
+	virtual ~AbstractPage(){} // Deconstructor
 
-	virtual void print() = 0;
-	virtual void input(int input, AbstractPage** page) = 0;
+	virtual void print() = 0; // A virtual void for printing the contents of pages.
+	virtual void input(int input, AbstractPage** page) = 0;//A virtual void for handling inputs.
 };

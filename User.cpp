@@ -1,6 +1,7 @@
 #include "User.h" 
 
-void User::registerUser(std::string inUserName, std::string inPassword)
+//Registers a new user account by storing the input data into a txt file.
+void User::registerAccount(std::string inUserName, std::string inPassword)
 {
 	userList.open("userList.txt", std::fstream::out | std::fstream::app);
 	userList << inUserName << " ";
@@ -11,6 +12,7 @@ void User::registerUser(std::string inUserName, std::string inPassword)
 	password = inPassword;
 }
 
+//Allows the user to login to a pre-existing user account by checking the details against the txt tile.
 void User::login(std::string inUserName, std::string inPassword)
 {
 	authenticate.open("userList.txt");
@@ -21,7 +23,8 @@ void User::login(std::string inUserName, std::string inPassword)
 		{
 			if (username == inUserName && password == inPassword)
 			{
-				std::cout << "\n\nUser found\n\n";
+				system("CLS");
+				std::cout << "User found\n\n";
 				system("PAUSE");
 				system("CLS");
 				username = inUserName;
@@ -31,7 +34,8 @@ void User::login(std::string inUserName, std::string inPassword)
 		}
 		if (username != inUserName || password != inPassword)
 		{
-			std::cout << "\nLogin failed\n\n";
+			system("CLS");
+			std::cout << "Login failed\n\n";
 			system("PAUSE");
 			system("CLS");
 			std::cout << "Please re-enter your details.";

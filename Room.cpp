@@ -1,10 +1,9 @@
 #include "Room.h"
-
+//Constructor
 Room::Room()
 {
-
 }
-
+//Secondary Constructor
 Room::Room(std::string num, std::string suiteType, std::string vacancyStatus,
 	int cost, int max_occupancy, int reviewScore)
 {
@@ -15,7 +14,7 @@ Room::Room(std::string num, std::string suiteType, std::string vacancyStatus,
 	occupancyLimit = max_occupancy;
 	rating = reviewScore;
 }
-
+//Getters and Setters
 std::string Room::getRoomNum()
 {
 	return roomNum;

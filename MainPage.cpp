@@ -1,5 +1,6 @@
 #include "MainPage.h"
 
+//Prints the contents of the webpage
 void mainPage::print()
 {
 	std::cout << "Welcome to our vast selection of rooms.";
@@ -8,24 +9,46 @@ void mainPage::print()
 	std::cout << "\n2. View all rooms.";
 	std::cout << "\n3. Search for a specific room.";
 	std::cout << "\n4. Create a new room. (Employee account required)";
+	std::cout << "\n5. Check Booking";
+	std::cout << "\n6. Previous page";
+	std::cout << "\n7. Log out";
 	std::cout << "\n\nPlease make your selection: ";
 }
 
+// Handles the users inputs on the site.
 void mainPage::input(int input, AbstractPage** page)
 {
+	AbstractPage* p = *page;
 	switch (input)
 	case 1:
 	{
+		//Nullifys the root and populates the BST.
+		bst.nullRoot();
 		tree->populateTree(&bst);
 		system("CLS");
 		std::cout << "Load successful.\n\n";
 		system("PAUSE");
+		system("CLS");
 		break;
 	case 2:
+		//Prints the BST
 		system("CLS");
+		std::cout << "Room Num" << "    " << "Suite" << "         " << "Vacancy" << "       " << "Cost \x9C"
+			<< "   " << "Max Occ" << "  " << "Rating\n";
 		bst.display();
+		system("PAUSE");
+		system("CLS");
 		break;
 	case 3:
+		if (user == NULL)
+		{
+			system("CLS");
+			std::cout << "Sorry this feature is for customers only.\n\n";
+			system("PAUSE");
+			system("CLS");
+			break;
+		}
+		//Allows the user to search rooms.
 		system("CLS");
 		std::cout << "Please enter the room number you are looking for: E.G. R201\n\n";
 		std::cout << "Enter here: ";
@@ -38,13 +61,64 @@ void mainPage::input(int input, AbstractPage** page)
 			system("CLS");
 			std::cout << "Sorry you do not have the permissions required to access this feature.\n\n";
 			system("PAUSE");
+			system("CLS");
 			break;
 		}
 		else
 		{
+			//Allows the employee to create rooms.
 			bst.createRoom(employee);
 			break;
 		}
+	case 5:
+		if (user == NULL)
+		{
+			system("CLS");
+			std::cout << "Sorry this feature is for customers only.\n\n";
+			system("PAUSE");
+			system("CLS");
+			break;
+		}
+		else
+		{
+			//Allows the user to check the room they have booked.
+			bst.checkBooking(user);
+			system("CLS");
+			break;
+		}
+	case 6:
+		// Allows the user to go back a page.
+		system("CLS");
+		if (user != NULL)
+		{
+			*page = new Home(user);
+			delete p;
+			break;
+		}
+		if (employee != NULL)
+		{
+			*page = new EmployeeDash(employee);
+			delete p;
+			break;
+		}
+	case 7:
+		// Allows the user to log out.
+		system("CLS");
+		if(user != NULL)
+		{
+			delete user;
+			*page = new Access();
+			delete p;
+			break;
+		}
+		if (employee != NULL)
+		{
+			delete employee;
+			*page = new Access();
+			delete p;
+			break;
+		}
+
 	default:
 		system("CLS");
 		std::cout << "Please select a valid option.\n\n";

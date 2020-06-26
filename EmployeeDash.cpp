@@ -1,11 +1,17 @@
 #include "EmployeeDash.h"
 #include "BinarySearchTree.h"
+
+//Prints the contents of the webpage
 void EmployeeDash::print()
 {
 	std::cout << "Welcome to the Employee Dashboard.";
 	std::cout << "\n\n1. Continue to the main site.";
+	std::cout << "\n2. Log out";
+
+	std::cout << "\n\nYour Selection: ";
 }
 
+// Handles the users inputs on the site.
 void EmployeeDash::input(int input, AbstractPage** page)
 {
 	AbstractPage* p = *page;
@@ -13,8 +19,13 @@ void EmployeeDash::input(int input, AbstractPage** page)
 	{
 	case 1:
 		system("CLS");
-		//*page = new BinarySearchTree(employee);
 		*page = new mainPage(employee);
+		delete p;
+		break;
+	case 2:
+		delete employee;
+		system("CLS");
+		*page = new Access();
 		delete p;
 		break;
 	default:

@@ -5,16 +5,16 @@
 class mainPage : public AbstractPage
 {
 private:
-	User* user;
-	Employee* employee;
-	std::string searchParams;
-	BinarySearchTree bst, * tree = nullptr;
+	User* user; // Pointer to the user
+	Employee* employee; // Pointer to the employee
+	std::string searchParams; // String for searching rooms
+	BinarySearchTree bst, *tree = nullptr; //Class and pointer for the BST class.
 public:
-	mainPage(User* user) : user(user) {}
-	mainPage(Employee* employee) : employee(employee) {}
+	mainPage(User* user) : user(user) {} // Constructor to pass the user account in. 
+	mainPage(Employee* employee) : employee(employee) {} // Constructor to pass the employee account in.
 
-	virtual ~mainPage() {}
+	virtual ~mainPage() {} // Deconstructor
 
-	void print();
-	void input(int input, AbstractPage** page);
+	void print(); // Prints the contents of the webpage.
+	void input(int input, AbstractPage** page); // Handles the inputs of the webpage.
 };

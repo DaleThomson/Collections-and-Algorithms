@@ -1,5 +1,6 @@
 #include "Login.h"
 
+//Prints the contents of the webpage
 void Login::print()
 {
 	system("CLS");
@@ -9,6 +10,7 @@ void Login::print()
 	std::cout << "\n\nPlease enter your selection: ";
 }
 
+// Handles the users inputs on the site.
 void Login::input(int input, AbstractPage** page)
 {
 	AbstractPage* p = *page;

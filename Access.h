@@ -5,10 +5,10 @@
 class Access : public AbstractPage
 {
 public:
-	Access() {}
+	Access() {} // Constructor
 
-	virtual ~Access() {}
+	virtual ~Access() {} // Deconstructor
 
-	void print();
-	void input(int input, AbstractPage** page);
+	void print(); //A method to print the contents of the page.
+	void input(int input, AbstractPage** page); //Handles the inputs for the page.
 };
