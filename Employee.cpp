@@ -26,9 +26,8 @@ void Employee::registerAccount(std::string inUsername, std::string inPassword)
 			}
 			else if (username != inUsername)
 			{
-				system("CLS");
 				authenticate.close();
-				employeeList.open("employeeList.txt", std::fstream::out | std::fstream::app);
+				employeeList.open("userList.txt", std::fstream::out | std::fstream::app);
 				employeeList << inUsername << " ";
 				employeeList << inPassword;
 				employeeList << "\n";

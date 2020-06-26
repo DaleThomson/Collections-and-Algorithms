@@ -3,3 +3,7 @@ R204 King Vacant 1000 4 5
 C101 Single Vacant 100 4 4
 R274 Queen Vacant 499 3 4
 C203 Deluxe Vacant 1400 5 5
+C901 King Vacant 5000 99 5
+C902 King Vacant 7000 32 3
+C903 Doublw Vacant 2000 4 5
+C999 Queen Vacant 200 2 3

@@ -27,9 +27,9 @@ void BinarySearchTree::addRoom(Room room)
 		while (currentNode)
 		{
 			parent = currentNode;
-			if (node->room.getRoomNum() > currentNode->room.getRoomNum()) 
-				currentNode = currentNode->right;							
-			else							
+			if (node->room.getRoomNum() > currentNode->room.getRoomNum())
+				currentNode = currentNode->right;
+			else
 				currentNode = currentNode->left;
 		}
 		if (node->room.getRoomNum() < parent->room.getRoomNum())
@@ -233,7 +233,7 @@ void BinarySearchTree::createRoom(Employee* employee)
 void BinarySearchTree::searchRoom(std::string roomNum)
 {
 	bool roomFound = false;
-	tree* currentNode, *parent;
+	tree* currentNode, * parent;
 	currentNode = root;
 
 	if (root == NULL)
@@ -287,6 +287,74 @@ void BinarySearchTree::searchRoom(std::string roomNum)
 		{
 			parent = currentNode;
 			if (roomNum > currentNode->room.getRoomNum())
+			{
+				currentNode = currentNode->right;
+			}
+			else
+			{
+				currentNode = currentNode->left;
+			}
+		}
+	}
+}
+
+void BinarySearchTree::searchReverseRoom(std::string roomNum)
+{
+	bool roomFound = false;
+	tree* currentNode, * parent;
+	currentNode = root;
+
+	if (root == NULL)
+	{
+		system("CLS");
+		std::cout << "Tree is empty\n\n";
+		system("PAUSE");
+		system("CLS");
+		return;
+	}
+
+	while (currentNode != NULL)
+	{
+		if (currentNode->room.getRoomNum() == roomNum)
+		{
+			std::cout << "Room Number: " << currentNode->room.getRoomNum();
+			std::cout << "\nSuite: " << currentNode->room.getSuite();
+			std::cout << "\nVacancy: " << currentNode->room.getVacancy();
+			std::cout << "\nCost: \x9C" << currentNode->room.getPrice() << " Per night";
+			std::cout << "\nMaximum Occupancy: " << currentNode->room.getOccupancyLimit();
+			std::cout << "\nRating: " << currentNode->room.getRating() << "/5" << "\n\n";
+			std::cout << "Would you like to book this room? Y\N: ";
+			char confirm;
+			std::cin >> confirm;
+			int check = 0;
+			while (check != 1)
+			{
+				switch (confirm)
+				{
+				case 'Y': case 'y':
+					booking(currentNode);
+					check = 1;
+					system("CLS");
+					break;
+				case 'N': case 'n':
+					check = 1;
+					system("CLS");
+					break;
+				default:
+					system("CLS");
+					std::cout << "Please select a valid option\n\n";
+					std::cout << "Please enter your selection: Y/N: ";
+					std::cin >> confirm;
+					system("CLS");
+					break;
+				}
+			}
+			break;
+		}
+		else
+		{
+			parent = currentNode;
+			if (roomNum < currentNode->room.getRoomNum())
 			{
 				currentNode = currentNode->right;
 			}

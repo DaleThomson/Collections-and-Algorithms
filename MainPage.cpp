@@ -9,10 +9,11 @@ void mainPage::print()
 	std::cout << "\n2. Load room selection in reverse order";
 	std::cout << "\n3. View all rooms.";
 	std::cout << "\n4. Search for a specific room.";
-	std::cout << "\n5. Create a new room. (Employee account required)";
-	std::cout << "\n6. Check Booking";
-	std::cout << "\n7. Previous page";
-	std::cout << "\n8. Log out";
+	std::cout << "\n5. Search for reversed room.";
+	std::cout << "\n6. Create a new room. (Employee account required)";
+	std::cout << "\n7. Check Booking";
+	std::cout << "\n8. Previous page";
+	std::cout << "\n9. Log out";
 	std::cout << "\n\nPlease make your selection: ";
 }
 
@@ -65,6 +66,22 @@ void mainPage::input(int input, AbstractPage** page)
 		bst.searchRoom(searchParams);
 		break;
 	case 5:
+		if (user == NULL)
+		{
+			system("CLS");
+			std::cout << "Sorry this feature is for customers only.\n\n";
+			system("PAUSE");
+			system("CLS");
+			break;
+		}
+		//Allows the user to search rooms.
+		system("CLS");
+		std::cout << "Please enter the room number you are looking for: E.G. R201\n\n";
+		std::cout << "Enter here: ";
+		std::cin >> searchParams;
+		bst.searchReverseRoom(searchParams);
+		break;
+	case 6:
 		if (employee == NULL)
 		{
 			system("CLS");
@@ -79,7 +96,7 @@ void mainPage::input(int input, AbstractPage** page)
 			bst.createRoom(employee);
 			break;
 		}
-	case 6:
+	case 7:
 		if (user == NULL)
 		{
 			system("CLS");
@@ -95,7 +112,7 @@ void mainPage::input(int input, AbstractPage** page)
 			system("CLS");
 			break;
 		}
-	case 7:
+	case 8:
 		// Allows the user to go back a page.
 		system("CLS");
 		if (user != NULL)
@@ -110,7 +127,7 @@ void mainPage::input(int input, AbstractPage** page)
 			delete p;
 			break;
 		}
-	case 8:
+	case 9:
 		// Allows the user to log out.
 		system("CLS");
 		if(user != NULL)

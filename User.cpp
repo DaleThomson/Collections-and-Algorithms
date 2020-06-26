@@ -4,7 +4,6 @@
 void User::registerAccount(std::string inUserName, std::string inPassword)
 {
 	authenticate.open("userList.txt");
-	int verify = 0;
 	if (authenticate)
 	{
 		while (std::getline(authenticate, username, ' '))
