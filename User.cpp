@@ -11,7 +11,7 @@ void User::registerAccount(std::string inUserName, std::string inPassword)
 	username = inUserName;
 	password = inPassword;
 }
-
+//Prompts the user to accept the GDPR agreement. Sourced from this website : https://www.gdprprivacynotice.com/
 void User::GDPR()
 {
 	char confirm;
